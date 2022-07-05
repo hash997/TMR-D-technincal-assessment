@@ -1,0 +1,33 @@
+{
+  "name": "job-assessment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "devStart": "nodemon app.js",
+    "migrate": "sequelize db:migrate",
+    "migrate:test": "NODE_ENV=test npm run migrate",
+    "start": "node ./app.js",
+    "dev": "nodemon ./app.js",
+    "pretest": "npm run migrate:test",
+    "test": "jest --testPathPattern='./tests/.*\\.test\\.js$' --detectOpenHandles --runInBand --forceExit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "await-to-js": "^3.0.0",
+    "axios": "^0.27.2",
+    "bluebird": "^3.7.2",
+    "body-parser": "^1.20.0",
+    "config": "^3.3.7",
+    "express": "^4.18.1",
+    "mysql2": "^2.3.3",
+    "parse-error": "^0.2.0",
+    "sequelize": "^6.21.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.18",
+    "supertest": "^6.2.4"
+  }
+}
