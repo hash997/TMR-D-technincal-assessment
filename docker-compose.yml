@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  dev:
+    build: ./courier-rates-app
+    container_name: rates_app_dev
+    ports:
+      - 8000:3000
+    env_file: ./.env
+    environment:
+      - DB_HOST=mysql
+      - DB_USER=$MYSQLDB_USER
+      - DB_PASSWORD=$MYSQLDB_ROOT_PASSWORD
+      - DB_NAME=$MYSQLDB_DATABASE
+    command: npm run dev
+    depends_on:
+      - mysql
+  mysql:
+    platform: linux/x86_64
+    image: mysql:5.7
+    container_name: rates_mysql
+    environment:
+      - MYSQL_DATABASE=$MYSQLDB_DATABASE
+      - MYSQL_ROOT_PASSWORD=$MYSQLDB_ROOT_PASSWORD
+    ports:
+      - 5432:5432
+    command: --character-set-server=utf8
+    restart: always
+
+volumes:
+  db:
