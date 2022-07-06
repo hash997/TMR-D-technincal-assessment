@@ -15,6 +15,21 @@ services:
     command: npm run dev
     depends_on:
       - mysql
+  test:
+    build:
+      dockerfile: Dockerfile-test
+      context: ./courier-rates-app
+    env_file: .env-test
+    ports:
+      - 8000:3000
+    environment:
+      - DB_HOST=mysql_test
+      - DB_USER=root
+      - DB_PASSWORD=password
+      - DB_NAME=mysql_test
+    # restart: always
+    depends_on:
+      - mysql_test
   mysql:
     platform: linux/x86_64
     image: mysql:5.7
@@ -26,6 +41,17 @@ services:
       - 5432:5432
     command: --character-set-server=utf8
     restart: always
+  mysql_test:
+    platform: linux/x86_64
+    image: mysql:5.7
+    container_name: rates_mysql_test
+    environment:
+      - MYSQL_DATABASE=rates_db_test
+      - MYSQL_ROOT_PASSWORD=password
+    # env_file: ./courier-rates-app/.env-test
+    ports:
+      - "3308:4321"
+    command: --character-set-server=utf8
 
 volumes:
   db:
