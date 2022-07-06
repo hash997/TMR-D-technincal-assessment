@@ -1,15 +1,16 @@
+require("dotenv").config();
 const { isTest } = require("./services/environment.service");
 const express = require("express");
-
 const bodyParser = require("body-parser");
+const logger = require("morgan");
 
 // This will be our application entry. We'll setup our server here.
 const http = require("http");
 
 // Set up express app
 const app = express();
+app.use(logger("dev"));
 const v1 = require("./routes/v1");
-
 // Parse incoming requests data (https://github.com/expressjs/body-parser)
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
