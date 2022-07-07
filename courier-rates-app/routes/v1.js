@@ -12,7 +12,7 @@ const jnt = require("../puppeteer/index");
 
 router.post("/login", AuthController.authenticate);
 
-router.post("/", jnt.getJntRates);
+router.post("/jnt", jnt.getJntRates);
 
 router.post(
   "/rates",
