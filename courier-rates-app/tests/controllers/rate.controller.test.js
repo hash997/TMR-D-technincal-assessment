@@ -24,8 +24,6 @@ describe("Rates", () => {
         request(server).post("/login").send(user)
       );
 
-      console.log("authRes.body", authRes.body.token);
-
       const res = await request(server)
         .post("/rates")
         .set({
@@ -46,8 +44,6 @@ describe("Rates", () => {
       const authRes = await testHelpers.withLogin(
         request(server).post("/login").send(user)
       );
-
-      console.log("authRes.body", authRes.body.token);
 
       const res = await request(server)
         .post("/rates")
