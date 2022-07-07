@@ -5,7 +5,7 @@ WORKDIR /rates-app
 
 COPY package.json ./
 RUN npm install
-RUN npm install -g jest sequelize-cli
+RUN npm install -g jest 
 
 COPY . .
 

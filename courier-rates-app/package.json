@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "devStart": "nodemon app.js",
-    "migrate": "sequelize db:migrate",
+    "migrate": "npx sequelize-cli db:migrate",
     "seed": "npx sequelize-cli db:seed:all",
     "migrate:test": "NODE_ENV=test npm run migrate",
     "start": "node ./app.js",
