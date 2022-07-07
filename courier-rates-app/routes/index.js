@@ -1,18 +1,21 @@
 const express = require("express");
-
 const router = express.Router();
 const passport = require("passport");
+const jntScraper = require("../jntScraper/index");
 require("../passport");
 
 const customMiddleware = require("../middleware/custom");
 
 const AuthController = require("../controllers/auth.controller");
 const RateController = require("../controllers/rate.controller");
-const jnt = require("../puppeteer/index");
+
+/**
+ * -------------- POST ROUTES ----------------
+ */
 
 router.post("/login", AuthController.authenticate);
 
-router.post("/jnt", jnt.getJntRates);
+router.post("/jnt", AuthController.authenticate, jntScraper.getJntRates);
 
 router.post(
   "/rates",
